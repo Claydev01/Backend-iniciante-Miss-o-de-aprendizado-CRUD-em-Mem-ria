@@ -5,4 +5,10 @@ app.get('/', function (req, res) {
   res.send('Hello World!')
 })
 
+const lista = ['Java','kotlin','Android']
+//Endpoint Read All [GET] /personagem
+
+app.get('/personagem', function(req, res){
+  res.send(lista)
+})
 app.listen(3000)
