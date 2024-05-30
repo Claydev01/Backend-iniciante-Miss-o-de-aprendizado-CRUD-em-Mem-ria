@@ -21,4 +21,22 @@ app.get('/personagem/:id', function (req,res){
   const item = lista[id-1]
   res.send(item)
 })
+
+//Sinalizo ao express que estamos usando JSON no body
+app.use(express.json())
+// Endipoint CREATE [POST]/personagem
+app.post('/personagem', function (req, res){
+//  Acessamos o BODY da Requisição
+const body = req.body
+
+//Acessamos a propriedade 'nome' do body
+const novoItem = body.nome 
+
+//Adicionamos na lista
+lista.push(novoItem)
+
+//Exibimos uma mensagem de sucesso
+res.send('Item adicionado com sucesso:' + novoItem)
+
+})
 app.listen(3000)
