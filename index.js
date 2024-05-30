@@ -33,11 +33,11 @@ app.post('/personagem', function (req, res){
   const novoItem = body.nome 
 //checar se o 'nome' está presente no body
   if(!novoItem){
-  return res.send('corpo de requisicão deve conter a propriedade `nome`.')
+  return res.status(400).send('corpo de requisicão deve conter a propriedade `nome`.')
   }
 //Checar se o novo item está na lista ou não
   if(lista.includes(novoItem)){
-    return res.send( 'Esse item ja está na lista')
+    return res.status(409).send( 'Esse item ja está na lista')
   }
 
 
@@ -45,7 +45,7 @@ app.post('/personagem', function (req, res){
   lista.push(novoItem)
 
 //Exibimos uma mensagem de sucesso
-  res.send('Item adicionado com sucesso:' + novoItem)
+  res.status(201).send('Item adicionado com sucesso:' + novoItem)
 
 })
 
@@ -59,11 +59,11 @@ app.put('/personagem/:id',function(req,res){
   const novoItem = body.nome
   //checar se o 'nome' está presente no body
   if(!novoItem){
-    return res.send('corpo de requisicão deve conter a propriedade `nome`.')
+    return res.status(400).send('corpo de requisicão deve conter a propriedade `nome`.')
     }
   //Checar se o novo item está na lista ou não
     if(lista.includes(novoItem)){
-      return res.send( 'Esse item ja está na lista')
+      return res.status(409).send( 'Esse item ja está na lista')
     }
   //Atualizamos na lista o novoItem pelo id - 1
   lista[id-1]=novoItem
