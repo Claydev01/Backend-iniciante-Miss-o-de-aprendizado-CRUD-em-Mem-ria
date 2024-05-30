@@ -19,6 +19,10 @@ app.get('/personagem/:id', function (req,res){
   const id  = req.params.id
   //Acessar o item na lista usando ID - 1
   const item = lista[id-1]
+  //checamos se o item obtido é existente
+  if(!item){
+    return res.status(408).send('Item não encontrado')
+  }
   res.send(item)
 })
 
@@ -52,6 +56,11 @@ app.post('/personagem', function (req, res){
 //Endpoint Update [PUT]/personagem/:id
 app.put('/personagem/:id',function(req,res){
   const id = req.params.id
+  //checamos se o id - 1 está na lista, exibindo 
+  //mensagem caso o item não esteja
+  if(!lista[id - 1]){
+    return res.status(408).send('Item não encontrado')
+  }
   //Acessamos o body da requisicão
   const body = req.body
 
@@ -77,6 +86,12 @@ app.delete('/personagem/:id', function (req,res){
   
   //Acessamos o parâmetro de rota
   const id=req.params.id
+
+   //checamos se o id - 1 está na lista, exibindo 
+  //mensagem caso o item não esteja
+  if(!lista[id - 1]){
+    return res.status(408).send('Item não encontrado')
+  }
   //Remover o item da lista usando o id-1
   delete lista[id-1]
   //Enviamos uma mensagem de sucesso
